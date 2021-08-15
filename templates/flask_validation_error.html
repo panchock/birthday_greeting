@@ -1,0 +1,12 @@
+{% for field, errors in form.errors.items() %}
+<div class="alert alert-error">
+    <u>
+        {{ form[field].label }}
+        {% if form[field].description %}
+        ({{form[field].description}})
+        {% endif %}
+    </u>
+    :
+    <span style="color:red;">{{ ', '.join(errors) }}</span>
+</div>
+{% endfor %}
