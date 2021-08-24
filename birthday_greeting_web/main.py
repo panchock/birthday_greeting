@@ -27,7 +27,7 @@ def create_greeting() -> str:
             'to': form.to.data,
             'title': form.title.data,
             'content': form.content.data,
-            'date': form.date.data
+            'date': form.date.data.strftime('%d/%M/%Y')
         })
         return greeting_id
     return render_template("flask_validation_error.html", form=form)
