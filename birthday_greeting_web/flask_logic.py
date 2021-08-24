@@ -1,9 +1,10 @@
 import uuid
 import pika
+from config import RABBITMQ_ADDR
 
 
 def create_logic(body) -> str:
-    conn = pika.BlockingConnection(pika.ConnectionParameters('127.0.0.1'))
+    conn = pika.BlockingConnection(pika.ConnectionParameters(RABBITMQ_ADDR))
     channel = conn.channel()
 
     channel.queue_declare('greetings')
