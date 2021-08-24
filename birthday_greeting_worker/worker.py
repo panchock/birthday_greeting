@@ -1,7 +1,8 @@
 import time
 import pika
+from config import RABBITMQ_ADDR
 
-conn = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+conn = pika.BlockingConnection(pika.ConnectionParameters(RABBITMQ_ADDR))
 channel = conn.channel()
 
 channel.queue_declare(queue='greetings')
