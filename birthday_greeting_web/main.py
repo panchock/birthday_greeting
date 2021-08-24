@@ -23,11 +23,11 @@ def create_greeting() -> str:
     form = CreateGreetingForm(request.form)
     if form.validate():
         greeting_id = create_logic({
-            'from_greeting': form.from_greeting,
-            'to': form.to,
-            'title': form.title,
-            'content': form.content,
-            'date': form.date
+            'from_greeting': form.from_greeting.data,
+            'to': form.to.data,
+            'title': form.title.data,
+            'content': form.content.data,
+            'date': form.date.data
         })
         return greeting_id
     return render_template("flask_validation_error.html", form=form)
