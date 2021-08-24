@@ -1,5 +1,6 @@
 from wtforms import Form, StringField, DateField, validators
 
+
 class CreateGreetingForm(Form):
     from_greeting = StringField('from_greeting', [validators.DataRequired()])
     to = StringField('to', [validators.DataRequired()])

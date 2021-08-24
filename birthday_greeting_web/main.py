@@ -14,17 +14,24 @@ def hello() -> str:
         " with form contains from_greeting, to, title, content, date"
     )
 
+
 @app.route("/create_greeting", methods=["POST"])
 def create_greeting() -> str:
     form = CreateGreetingForm(request.form)
     if form.validate():
-        greeting_id = create_logic()
-        return str(greeting_id)
+        greeting_id = create_logic({
+            'from_greeting': form.from_greeting,
+            'to': form.to,
+            'title': form.title,
+            'content': form.content,
+            'date': form.date
+        })
+        return greeting_id
     return render_template("flask_validation_error.html", form=form)
 
 
 @app.route("/check_greeting/<greeting_id>", methods=["GET"])
-def check_greeting(greeting_id: int) -> Response:
+def check_greeting(greeting_id: str) -> Response:
     # check if greeting with id is ready
     print(f"Greeting id requested: {greeting_id}")
     greeting_location = check_logic(greeting_id)
@@ -34,4 +41,4 @@ def check_greeting(greeting_id: int) -> Response:
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=80)  # Run the app
+    app.run(debug=True, host='0.0.0.0', port=80)  # Run the app
