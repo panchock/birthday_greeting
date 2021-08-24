@@ -1,6 +1,6 @@
 FROM faucet/python3
 
-RUN pip install flask wtforms pika
+RUN pip install flask wtforms pika json
 
 COPY . /app
 

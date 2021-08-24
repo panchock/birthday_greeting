@@ -1,5 +1,6 @@
 import uuid
 import pika
+import json
 from config import RABBITMQ_ADDR
 
 
@@ -9,7 +10,7 @@ def create_logic(body) -> str:
 
     channel.queue_declare('greetings')
     body['id'] = str(uuid.uuid4())
-    channel.basic_publish(exchange='', routing_key='greetings', body=body)
+    channel.basic_publish(exchange='', routing_key='greetings', body=json.dumps(body))
 
     return body['id']
 
