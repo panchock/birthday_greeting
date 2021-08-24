@@ -19,7 +19,7 @@ def create_greeting_page() -> str:
     return render_template("create_greeting.html")
 
 @app.route("/create_greeting", methods=["POST"])
-def create_greeting() -> str:
+def create_greeting():
     form = CreateGreetingForm(request.form)
     if form.validate():
         greeting_id = create_logic({
@@ -30,7 +30,7 @@ def create_greeting() -> str:
             'date': form.date.data.strftime('%d/%M/%Y')
         })
         return greeting_id
-    return render_template("flask_validation_error.html", form=form)
+    return render_template("flask_validation_error.html", form=form), 403
 
 
 @app.route("/check_greeting/<greeting_id>", methods=["GET"])
