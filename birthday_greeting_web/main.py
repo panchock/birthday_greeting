@@ -14,6 +14,9 @@ def hello() -> str:
         " with form contains from_greeting, to, title, content, date"
     )
 
+@app.route("/create_greeting", methods=["GET"])
+def create_greeting_page() -> str:
+    return render_template("create_greeting.html")
 
 @app.route("/create_greeting", methods=["POST"])
 def create_greeting() -> str:
